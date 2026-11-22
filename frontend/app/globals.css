@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background-color: #FAFAF8;
+  color: #1A2420;
+  font-feature-settings: "cv11", "ss01";
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect users who prefer reduced motion: disable all transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible focus for keyboard users, suppressed for mouse clicks. */
+:focus-visible {
+  outline: 2px solid #2F6647;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 50;
+  background: #fff;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(21,47,34,0.06), 0 12px 32px rgba(21,47,34,0.08);
+}

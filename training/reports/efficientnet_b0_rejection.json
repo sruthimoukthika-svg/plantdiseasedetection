@@ -1,34 +1,115 @@
 {
   "backbone": "efficientnet_b0",
-  "target_tpr": 0.95,
-  "shrinkage": 0.1,
+  "target_tpr": 0.9,
+  "calibration_percentile": 94.71,
   "thresholds": {
-    "mahalanobis": 1614.2615158040737,
-    "energy": -5.080212116241455
+    "mahalanobis": 1597.35,
+    "energy": -7.3441
   },
-  "val_accept_rate_combined": 0.9052,
+  "gate_val_macro_f1": 0.9942,
+  "exposure_species": [
+    "Apple",
+    "Corn_(maize)",
+    "Orange",
+    "Soybean",
+    "Squash",
+    "Strawberry"
+  ],
+  "heldout_species": [
+    "Blueberry",
+    "Cherry_(including_sour)",
+    "Peach",
+    "Pepper,_bell",
+    "Raspberry"
+  ],
+  "in_distribution": {
+    "val_accept_rate": 0.9001
+  },
   "ood_sets": {
-    "non_plant_objects": {
-      "n": 1500,
-      "false_accept_rate": 0.0,
-      "false_accept_mahalanobis_only": 0.0,
-      "false_accept_energy_only": 0.0827,
-      "mahalanobis_p50": 6340.15
+    "unsupported_lab_heldout": {
+      "n": 5171,
+      "false_accept_rate": 0.0656,
+      "rejected_by_gate_alone": 0.6461,
+      "rejected_by_mahalanobis_alone": 0.1383,
+      "rejected_by_energy_alone": 0.473,
+      "measured_at_target_tpr": 0.9
     },
     "unsupported_field": {
       "n": 1291,
-      "false_accept_rate": 0.0217,
-      "false_accept_mahalanobis_only": 0.055,
-      "false_accept_energy_only": 0.2347,
-      "mahalanobis_p50": 3440.72
+      "false_accept_rate": 0.0062,
+      "rejected_by_gate_alone": 0.6019,
+      "rejected_by_mahalanobis_alone": 0.9032,
+      "rejected_by_energy_alone": 0.5259,
+      "measured_at_target_tpr": 0.9
     },
-    "unsupported_lab": {
-      "n": 1491,
-      "false_accept_rate": 0.2267,
-      "false_accept_mahalanobis_only": 0.6754,
-      "false_accept_energy_only": 0.3293,
-      "mahalanobis_p50": 1252.59
+    "non_plant_objects": {
+      "n": 1500,
+      "false_accept_rate": 0.0,
+      "rejected_by_gate_alone": 0.204,
+      "rejected_by_mahalanobis_alone": 1.0,
+      "rejected_by_energy_alone": 0.698,
+      "measured_at_target_tpr": 0.9
+    },
+    "unsupported_lab_exposure": {
+      "n": 7200,
+      "false_accept_rate": 0.0003,
+      "rejected_by_gate_alone": 0.9993,
+      "rejected_by_mahalanobis_alone": 0.286,
+      "rejected_by_energy_alone": 0.056
     }
   },
-  "test_accept_rate_in_distribution": 0.9019
+  "operating_point_rationale": "Target true-accept rate 0.90 rather than 0.95. At 0.95 the false-accept rate on unseen unsupported species is 0.1259; at 0.90 it is 0.0656. The brief requires failing safely rather than presenting an unreliable prediction, so the lower false-accept rate is preferred over accepting 5% more genuine leaves.",
+  "caveat": "The gate generalises far better to species it was shown than to unseen ones: false-accept is 0.0003 on exposure species versus 0.0656 on held-out species. Rejection of unfamiliar leaf species is therefore the weakest part of the system. Random non-plant photographs are rejected completely (0.0000).",
+  "all_operating_points": [
+    {
+      "target_tpr": 0.8,
+      "percentile": 89.1,
+      "val_tpr": 0.8,
+      "far_unsupported_lab_heldout": 0.0195,
+      "far_unsupported_field": 0.0031,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 1320.33,
+      "thr_energy": -9.0826
+    },
+    {
+      "target_tpr": 0.85,
+      "percentile": 91.97,
+      "val_tpr": 0.8501,
+      "far_unsupported_lab_heldout": 0.0331,
+      "far_unsupported_field": 0.0031,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 1436.05,
+      "thr_energy": -8.3412
+    },
+    {
+      "target_tpr": 0.9,
+      "percentile": 94.71,
+      "val_tpr": 0.9001,
+      "far_unsupported_lab_heldout": 0.0656,
+      "far_unsupported_field": 0.0062,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 1597.35,
+      "thr_energy": -7.3441
+    },
+    {
+      "target_tpr": 0.95,
+      "percentile": 97.46,
+      "val_tpr": 0.9502,
+      "far_unsupported_lab_heldout": 0.1259,
+      "far_unsupported_field": 0.0163,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 1839.53,
+      "thr_energy": -6.2082
+    },
+    {
+      "target_tpr": 0.99,
+      "percentile": 99.6,
+      "val_tpr": 0.9901,
+      "far_unsupported_lab_heldout": 0.2744,
+      "far_unsupported_field": 0.0922,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 2640.18,
+      "thr_energy": -3.638
+    }
+  ]
 }

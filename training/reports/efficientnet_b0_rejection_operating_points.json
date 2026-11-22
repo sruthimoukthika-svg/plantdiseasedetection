@@ -1,0 +1,55 @@
+{
+  "note": "FAR on unsupported_lab_heldout is the honest figure: those 5 species are absent from rejector training.",
+  "operating_points": [
+    {
+      "target_tpr": 0.8,
+      "percentile": 89.1,
+      "val_tpr": 0.8,
+      "far_unsupported_lab_heldout": 0.0195,
+      "far_unsupported_field": 0.0031,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 1320.33,
+      "thr_energy": -9.0826
+    },
+    {
+      "target_tpr": 0.85,
+      "percentile": 91.97,
+      "val_tpr": 0.8501,
+      "far_unsupported_lab_heldout": 0.0331,
+      "far_unsupported_field": 0.0031,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 1436.05,
+      "thr_energy": -8.3412
+    },
+    {
+      "target_tpr": 0.9,
+      "percentile": 94.71,
+      "val_tpr": 0.9001,
+      "far_unsupported_lab_heldout": 0.0656,
+      "far_unsupported_field": 0.0062,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 1597.35,
+      "thr_energy": -7.3441
+    },
+    {
+      "target_tpr": 0.95,
+      "percentile": 97.46,
+      "val_tpr": 0.9502,
+      "far_unsupported_lab_heldout": 0.1259,
+      "far_unsupported_field": 0.0163,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 1839.53,
+      "thr_energy": -6.2082
+    },
+    {
+      "target_tpr": 0.99,
+      "percentile": 99.6,
+      "val_tpr": 0.9901,
+      "far_unsupported_lab_heldout": 0.2744,
+      "far_unsupported_field": 0.0922,
+      "far_non_plant_objects": 0.0,
+      "thr_mahalanobis": 2640.18,
+      "thr_energy": -3.638
+    }
+  ]
+}

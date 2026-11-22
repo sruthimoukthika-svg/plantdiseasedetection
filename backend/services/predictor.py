@@ -80,8 +80,20 @@ class Predictor:
 
         self.features, dim = models.build_backbone(backbone, finetune=False)
         self.features.eval()
-        self.gate = models.LinearHead(dim, len(self.crop_index))
-        self.gate.load_state_dict(ck["state"]["species_head"])
+
+        # The 3-class gate cannot express "none of these": it must assign an
+        # apple leaf to tomato, potato or grape. The 4-class gate adds an
+        # explicit unsupported class, trained by outlier exposure, and is
+        # preferred whenever the checkpoint carries one.
+        self.unsupported_index: int | None = ck.get("unsupported_class_index")
+        if "species_gate4" in ck["state"] and self.unsupported_index is not None:
+            self.gate = models.LinearHead(dim, self.unsupported_index + 1)
+            self.gate.load_state_dict(ck["state"]["species_gate4"])
+            self.gate_has_unsupported = True
+        else:
+            self.gate = models.LinearHead(dim, len(self.crop_index))
+            self.gate.load_state_dict(ck["state"]["species_head"])
+            self.gate_has_unsupported = False
         self.gate.eval()
         self.heads: dict[str, models.LinearHead] = {}
         for crop in self.crop_index:
@@ -126,6 +138,13 @@ class Predictor:
 
         diag: dict = {"image_checks": chk.detail}
 
+        # Layer 1 of rejection: the gate's own explicit unsupported class.
+        if self.gate_has_unsupported:
+            diag["unsupported_score"] = round(
+                float(gate_p[self.unsupported_index]), 4)
+            if int(gate_p.argmax()) == self.unsupported_index:
+                return Prediction(False, "unsupported_image", diagnostics=diag)
+
         if self.ood is not None:
             zn = z.numpy()
             maha = self._mahalanobis(zn)
@@ -139,11 +158,17 @@ class Predictor:
             if maha > self.ood["thr_mahalanobis"] or energy > self.ood["thr_energy"]:
                 return Prediction(False, "unsupported_image", diagnostics=diag)
 
-        ci = int(gate_p.argmax())
+        # restrict the argmax to the supported crops; renormalise so the
+        # reported species confidence is over supported crops only
+        n_sup = len(self.crop_index)
+        sup_p = gate_p[:n_sup]
+        total = float(sup_p.sum()) or 1.0
+        ci = int(sup_p.argmax())
         crop = self.inv_crop[ci]
-        crop_conf = float(gate_p[ci])
+        crop_conf = float(sup_p[ci] / total)
         diag["species_probs"] = {
-            self.inv_crop[i]: round(float(p), 4) for i, p in enumerate(gate_p)
+            self.inv_crop[i]: round(float(p / total), 4)
+            for i, p in enumerate(sup_p)
         }
         if crop_conf < self.species_min:
             return Prediction(False, "plant_species_uncertain", diagnostics=diag)
