@@ -1,0 +1,30 @@
+{
+  "models": [
+    {
+      "backbone": "efficientnet_b0",
+      "val_species_macro_f1": 0.9978,
+      "val_condition_macro_f1_mean": 0.9661,
+      "val_tomato_macro_f1": 0.9246,
+      "test_end_to_end_acc": 0.9457,
+      "test_end_to_end_macro_f1": 0.9274,
+      "test_acc_lab_plantvillage": 0.966,
+      "test_acc_field_tomato_village": 0.798,
+      "inference_ms_mean": 15.93,
+      "train_seconds": 234.3
+    },
+    {
+      "backbone": "mobilenet_v3_small",
+      "val_species_macro_f1": 0.996,
+      "val_condition_macro_f1_mean": 0.9563,
+      "val_tomato_macro_f1": 0.8852,
+      "test_end_to_end_acc": 0.9229,
+      "test_end_to_end_macro_f1": 0.905,
+      "test_acc_lab_plantvillage": 0.951,
+      "test_acc_field_tomato_village": 0.7204,
+      "inference_ms_mean": 6.86,
+      "train_seconds": 213.8
+    }
+  ],
+  "selected": "efficientnet_b0",
+  "selection_criterion": "highest mean validation macro F1 across condition heads; test split not used for selection"
+}
