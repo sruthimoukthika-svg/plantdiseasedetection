@@ -1,0 +1,158 @@
+{
+  "crops": {
+    "grape": 0,
+    "potato": 1,
+    "tomato": 2
+  },
+  "conditions": {
+    "grape": {
+      "black_rot": {
+        "index": 0,
+        "display": "Black Rot",
+        "kind": "disease",
+        "pathogen": "Guignardia bidwellii"
+      },
+      "esca": {
+        "index": 1,
+        "display": "Esca (Black Measles)",
+        "kind": "disease",
+        "pathogen": "Phaeomoniella chlamydospora"
+      },
+      "healthy": {
+        "index": 2,
+        "display": "Healthy",
+        "kind": "healthy",
+        "pathogen": ""
+      },
+      "leaf_blight": {
+        "index": 3,
+        "display": "Leaf Blight (Isariopsis Leaf Spot)",
+        "kind": "disease",
+        "pathogen": "Pseudocercospora vitis"
+      }
+    },
+    "potato": {
+      "early_blight": {
+        "index": 0,
+        "display": "Early Blight",
+        "kind": "disease",
+        "pathogen": "Alternaria solani"
+      },
+      "healthy": {
+        "index": 1,
+        "display": "Healthy",
+        "kind": "healthy",
+        "pathogen": ""
+      },
+      "late_blight": {
+        "index": 2,
+        "display": "Late Blight",
+        "kind": "disease",
+        "pathogen": "Phytophthora infestans"
+      }
+    },
+    "tomato": {
+      "bacterial_spot": {
+        "index": 0,
+        "display": "Bacterial Spot",
+        "kind": "disease",
+        "pathogen": "Xanthomonas spp."
+      },
+      "early_blight": {
+        "index": 1,
+        "display": "Early Blight",
+        "kind": "disease",
+        "pathogen": "Alternaria solani"
+      },
+      "healthy": {
+        "index": 2,
+        "display": "Healthy",
+        "kind": "healthy",
+        "pathogen": ""
+      },
+      "late_blight": {
+        "index": 3,
+        "display": "Late Blight",
+        "kind": "disease",
+        "pathogen": "Phytophthora infestans"
+      },
+      "leaf_miner": {
+        "index": 4,
+        "display": "Leaf Miner",
+        "kind": "pest",
+        "pathogen": "Liriomyza spp."
+      },
+      "leaf_mold": {
+        "index": 5,
+        "display": "Leaf Mold",
+        "kind": "disease",
+        "pathogen": "Passalora fulva"
+      },
+      "magnesium_deficiency": {
+        "index": 6,
+        "display": "Magnesium Deficiency",
+        "kind": "deficiency",
+        "pathogen": ""
+      },
+      "mosaic_virus": {
+        "index": 7,
+        "display": "Mosaic Virus",
+        "kind": "disease",
+        "pathogen": "ToMV"
+      },
+      "nitrogen_deficiency": {
+        "index": 8,
+        "display": "Nitrogen Deficiency",
+        "kind": "deficiency",
+        "pathogen": ""
+      },
+      "potassium_deficiency": {
+        "index": 9,
+        "display": "Potassium Deficiency",
+        "kind": "deficiency",
+        "pathogen": ""
+      },
+      "septoria_leaf_spot": {
+        "index": 10,
+        "display": "Septoria Leaf Spot",
+        "kind": "disease",
+        "pathogen": "Septoria lycopersici"
+      },
+      "spider_mites": {
+        "index": 11,
+        "display": "Two-Spotted Spider Mites",
+        "kind": "pest",
+        "pathogen": "Tetranychus urticae"
+      },
+      "spotted_wilt_virus": {
+        "index": 12,
+        "display": "Spotted Wilt Virus",
+        "kind": "disease",
+        "pathogen": "TSWV"
+      },
+      "target_spot": {
+        "index": 13,
+        "display": "Target Spot",
+        "kind": "disease",
+        "pathogen": "Corynespora cassiicola"
+      },
+      "yellow_leaf_curl_virus": {
+        "index": 14,
+        "display": "Yellow Leaf Curl Virus",
+        "kind": "disease",
+        "pathogen": "TYLCV"
+      }
+    }
+  },
+  "preprocessing": {
+    "short_side": 256,
+    "jpeg_quality": 92
+  },
+  "split_fractions": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "near_dup_hamming_threshold": 4,
+  "seed": 42
+}
