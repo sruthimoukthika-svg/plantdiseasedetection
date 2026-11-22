@@ -1,0 +1,31 @@
+{
+  "unsupported_lab": {
+    "n_images": 1491,
+    "cached": true
+  },
+  "unsupported_field": {
+    "n_images": 1291,
+    "cached": true
+  },
+  "non_plant_objects": {
+    "n_images": 1500,
+    "n_classes": 92,
+    "per_group": {
+      "objects": 444,
+      "vehicles": 489,
+      "animals": 321,
+      "food": 8,
+      "people": 214,
+      "buildings": 24
+    },
+    "plant_classes_excluded": [
+      "bonsai",
+      "joshua_tree",
+      "lotus",
+      "strawberry",
+      "sunflower",
+      "water_lilly"
+    ],
+    "plant_images_skipped": 57
+  }
+}

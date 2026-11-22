@@ -132,35 +132,81 @@ def build_unsupported_field(out: Path, cap: int | None) -> dict:
     return {"n_images": n, "n_classes": len(counts), "per_class": counts}
 
 
+# Caltech-101 classes that are PLANTS. They belong in the unsupported-plant
+# category, not the non-plant one, so they are excluded here to keep the
+# reported categories honest.
+CALTECH_PLANT_CLASSES = {
+    "bonsai", "joshua_tree", "lotus", "sunflower", "water_lilly", "strawberry",
+}
+
+# Grouping used only for reporting coverage of the categories the brief names.
+CALTECH_GROUPS = {
+    "people": {"faces", "faces_easy"},
+    "buildings": {"minaret", "pagoda", "pyramid"},
+    "food": {"pizza"},
+    "vehicles": {"airplanes", "car_side", "ferry", "helicopter", "motorbikes",
+                 "schooner", "ketch", "inline_skate", "wheelchair"},
+    "animals": {
+        "ant", "bass", "beaver", "brontosaurus", "butterfly", "cougar_body",
+        "cougar_face", "crab", "crayfish", "crocodile", "crocodile_head",
+        "dalmatian", "dolphin", "dragonfly", "elephant", "emu", "flamingo",
+        "flamingo_head", "gerenuk", "hawksbill", "hedgehog", "ibis",
+        "kangaroo", "leopards", "llama", "lobster", "mayfly", "nautilus",
+        "octopus", "okapi", "panda", "pigeon", "platypus", "rhino", "rooster",
+        "scorpion", "sea_horse", "starfish", "stegosaurus", "tick",
+        "trilobite", "wild_cat",
+    },
+}
+
+
+def _caltech_group(name: str) -> str:
+    for g, members in CALTECH_GROUPS.items():
+        if name in members:
+            return g
+    return "objects"
+
+
 def build_non_plant(out: Path, cap: int | None) -> dict:
-    """Random non-plant photographs: animals, buildings, vehicles, objects."""
+    """Random non-plant photographs: people, animals, buildings, food, objects.
+
+    Sourced from Caltech-101, which is parquet-native on the Hub and
+    full-resolution. Full resolution matters: a low-resolution set such as
+    CIFAR would be rejected by the blur pre-check rather than by the model,
+    which would flatter these numbers.
+    """
     try:
         from datasets import load_dataset
     except Exception as e:  # noqa: BLE001
         return {"n_images": 0, "error": f"datasets unavailable: {e}"}
     target = cap or 1000
     counts: dict[str, int] = {}
+    groups: dict[str, int] = {}
+    skipped_plant = 0
     n = 0
     try:
-        dsx = load_dataset("frgfm/imagenette", "160px", split="train",
+        dsx = load_dataset("dpdl-benchmark/caltech101", split="test",
                            streaming=True)
-        names = None
+        names = dsx.features["label"].names
         for ex in dsx:
             if n >= target:
                 break
-            lbl = ex.get("label")
-            if names is None:
-                names = {}
-            cls = str(lbl)
+            cls = names[ex["label"]]
+            if cls in CALTECH_PLANT_CLASSES:
+                skipped_plant += 1
+                continue
+            grp = _caltech_group(cls)
             buf = io.BytesIO()
             ex["image"].convert("RGB").save(buf, "JPEG", quality=92)
-            if save_norm(buf.getvalue(), out / cls / f"{n:05d}.jpg"):
+            if save_norm(buf.getvalue(), out / grp / f"{cls}_{n:05d}.jpg"):
                 n += 1
                 counts[cls] = counts.get(cls, 0) + 1
+                groups[grp] = groups.get(grp, 0) + 1
     except Exception as e:  # noqa: BLE001
-        return {"n_images": n, "per_class": counts,
+        return {"n_images": n, "per_group": groups,
                 "error": f"{type(e).__name__}: {str(e)[:200]}"}
-    return {"n_images": n, "n_classes": len(counts), "per_class": counts}
+    return {"n_images": n, "n_classes": len(counts), "per_group": groups,
+            "plant_classes_excluded": sorted(CALTECH_PLANT_CLASSES),
+            "plant_images_skipped": skipped_plant}
 
 
 def main() -> int:
