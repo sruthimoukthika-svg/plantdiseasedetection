@@ -147,6 +147,49 @@ def main() -> int:
     print(f"  acc {blk['accuracy']:.4f}  macroF1 {blk['f1_macro']:.4f}  "
           f"weightedF1 {blk['f1_weighted']:.4f}")
 
+    # --- per-source breakdown -------------------------------------------
+    # The single headline number is misleading: PlantVillage is standardised
+    # lab imagery, Tomato-Village is real-world field photography. Users
+    # upload the latter, so both are reported separately.
+    src_path = feat_dir / "test_sources.json"
+    if src_path.exists():
+        sources = np.array(json.loads(src_path.read_text()))
+        correct = y_true_g == y_pred_g
+        per_source = {}
+        for s_name in sorted(set(sources.tolist())):
+            m_s = sources == s_name
+            per_source[s_name] = {
+                "n": int(m_s.sum()),
+                "end_to_end_accuracy": round(float(correct[m_s].mean()), 4),
+            }
+            for crop, ci2 in sorted(crop_idx.items()):
+                m_sc = m_s & (y_crop == ci2)
+                if m_sc.any():
+                    per_source[s_name][f"acc_{crop}"] = round(
+                        float(correct[m_sc].mean()), 4)
+        out["per_source_dataset"] = per_source
+        print("\nend-to-end accuracy by source dataset:")
+        for s_name, v in per_source.items():
+            print(f"  {s_name:16s} n={v['n']:5d}  "
+                  f"acc {v['end_to_end_accuracy']:.4f}")
+
+    # --- low-support warning ---------------------------------------------
+    # An F1 computed on a handful of images is not a reliable estimate.
+    thin = {}
+    for crop in crop_idx:
+        key = f"condition_given_true_crop_{crop}"
+        if key not in out["stages"]:
+            continue
+        for cname, n in out["stages"][key]["support"].items():
+            if n < 30:
+                thin[f"{crop}/{cname}"] = n
+    if thin:
+        out["low_support_classes"] = thin
+        print("\nWARNING: per-class F1 is unreliable for these "
+              "(test support < 30):")
+        for k, v in sorted(thin.items(), key=lambda kv: kv[1]):
+            print(f"  {k:34s} n={v}")
+
     # --- inference timing, full pipeline on real images ------------------
     import dataset as ds  # noqa: E402
     from PIL import Image
