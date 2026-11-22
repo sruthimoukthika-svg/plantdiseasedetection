@@ -1,0 +1,38 @@
+{
+  "unsupported_lab_exposure": {
+    "species": [
+      "Apple",
+      "Corn_(maize)",
+      "Orange",
+      "Soybean",
+      "Squash",
+      "Strawberry"
+    ],
+    "n_images": 7200,
+    "per_species": {
+      "Apple": 1200,
+      "Corn_(maize)": 1200,
+      "Orange": 1200,
+      "Soybean": 1200,
+      "Squash": 1200,
+      "Strawberry": 1200
+    }
+  },
+  "unsupported_lab_heldout": {
+    "species": [
+      "Blueberry",
+      "Cherry_(including_sour)",
+      "Peach",
+      "Pepper,_bell",
+      "Raspberry"
+    ],
+    "n_images": 5171,
+    "per_species": {
+      "Blueberry": 1200,
+      "Cherry_(including_sour)": 1200,
+      "Peach": 1200,
+      "Pepper,_bell": 1200,
+      "Raspberry": 371
+    }
+  }
+}

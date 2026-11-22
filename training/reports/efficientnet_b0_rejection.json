@@ -1,0 +1,34 @@
+{
+  "backbone": "efficientnet_b0",
+  "target_tpr": 0.95,
+  "shrinkage": 0.1,
+  "thresholds": {
+    "mahalanobis": 1614.2615158040737,
+    "energy": -5.080212116241455
+  },
+  "val_accept_rate_combined": 0.9052,
+  "ood_sets": {
+    "non_plant_objects": {
+      "n": 1500,
+      "false_accept_rate": 0.0,
+      "false_accept_mahalanobis_only": 0.0,
+      "false_accept_energy_only": 0.0827,
+      "mahalanobis_p50": 6340.15
+    },
+    "unsupported_field": {
+      "n": 1291,
+      "false_accept_rate": 0.0217,
+      "false_accept_mahalanobis_only": 0.055,
+      "false_accept_energy_only": 0.2347,
+      "mahalanobis_p50": 3440.72
+    },
+    "unsupported_lab": {
+      "n": 1491,
+      "false_accept_rate": 0.2267,
+      "false_accept_mahalanobis_only": 0.6754,
+      "false_accept_energy_only": 0.3293,
+      "mahalanobis_p50": 1252.59
+    }
+  },
+  "test_accept_rate_in_distribution": 0.9019
+}
