@@ -32,9 +32,15 @@ from backend.services.predictor import Predictor  # noqa: E402
 BACKBONE = os.getenv("PDAI_BACKBONE", "efficientnet_b0")
 MODEL_DIR = Path(os.getenv("PDAI_MODEL_DIR", REPO_ROOT / "checkpoints"))
 MAX_UPLOAD_BYTES = int(os.getenv("PDAI_MAX_UPLOAD_BYTES", 10 * 1024 * 1024))
+# Both localhost and 127.0.0.1 are in the default: they are DIFFERENT origins
+# to a browser, and allowing only one makes the scanner fail silently
+# depending on which URL the user happens to type.
+_DEFAULT_ORIGINS = ",".join([
+    "http://localhost:3000", "http://127.0.0.1:3000",
+])
 ALLOWED_ORIGINS = [
     o.strip() for o in
-    os.getenv("PDAI_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+    os.getenv("PDAI_ALLOWED_ORIGINS", _DEFAULT_ORIGINS).split(",")
     if o.strip()
 ]
 SPECIES_MIN = float(os.getenv("PDAI_SPECIES_MIN_CONFIDENCE", 0.0))
