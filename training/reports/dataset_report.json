@@ -1,0 +1,283 @@
+{
+  "datasets": {
+    "agml_potato": {
+      "declared_features": [
+        {
+          "dtype": "image",
+          "name": "image"
+        },
+        {
+          "dtype": {
+            "class_label": {
+              "names": {
+                "0": "Bacteria",
+                "1": "Fungi",
+                "2": "Healthy",
+                "3": "Nematode",
+                "4": "Pest",
+                "5": "Phytopthora",
+                "6": "Virus"
+              }
+            }
+          },
+          "name": "label"
+        }
+      ],
+      "declared_splits": [
+        {
+          "name": "train",
+          "num_bytes": 787252807,
+          "num_examples": 3076
+        }
+      ],
+      "downloads": 120,
+      "n_files": 4,
+      "n_image_files": 0
+    },
+    "grape_hf": {
+      "copies_per_source": 4.44,
+      "declared_features": null,
+      "declared_splits": null,
+      "downloads": 778,
+      "n_files": 18056,
+      "n_image_files": 18054,
+      "sources_in_multiple_splits": 1344,
+      "splits_and_classes": {
+        "test/Black Rot": 944,
+        "test/ESCA": 960,
+        "test/Healthy": 846,
+        "test/Leaf Blight": 860,
+        "train/Black Rot": 3776,
+        "train/ESCA": 3840,
+        "train/Healthy": 3384,
+        "train/Leaf Blight": 3444
+      },
+      "unique_source_images": 4062
+    },
+    "plantdoc": {
+      "splits": {
+        "test": {
+          "classes": {
+            "Apple Scab Leaf": 10,
+            "Apple leaf": 9,
+            "Apple rust leaf": 10,
+            "Bell_pepper leaf": 8,
+            "Bell_pepper leaf spot": 9,
+            "Blueberry leaf": 11,
+            "Cherry leaf": 10,
+            "Corn Gray leaf spot": 4,
+            "Corn leaf blight": 12,
+            "Corn rust leaf": 10,
+            "Peach leaf": 9,
+            "Potato leaf early blight": 8,
+            "Potato leaf late blight": 8,
+            "Raspberry leaf": 7,
+            "Soyabean leaf": 8,
+            "Squash Powdery mildew leaf": 6,
+            "Strawberry leaf": 8,
+            "Tomato Early blight leaf": 9,
+            "Tomato Septoria leaf spot": 11,
+            "Tomato leaf": 8,
+            "Tomato leaf bacterial spot": 9,
+            "Tomato leaf late blight": 10,
+            "Tomato leaf mosaic virus": 10,
+            "Tomato leaf yellow virus": 6,
+            "Tomato mold leaf": 6,
+            "grape leaf": 12,
+            "grape leaf black rot": 8
+          },
+          "n_classes": 27,
+          "n_images": 236
+        },
+        "train": {
+          "classes": {
+            "Apple Scab Leaf": 83,
+            "Apple leaf": 82,
+            "Apple rust leaf": 79,
+            "Bell_pepper leaf": 53,
+            "Bell_pepper leaf spot": 62,
+            "Blueberry leaf": 106,
+            "Cherry leaf": 47,
+            "Corn Gray leaf spot": 64,
+            "Corn leaf blight": 180,
+            "Corn rust leaf": 106,
+            "Peach leaf": 103,
+            "Potato leaf early blight": 109,
+            "Potato leaf late blight": 97,
+            "Raspberry leaf": 112,
+            "Soyabean leaf": 57,
+            "Squash Powdery mildew leaf": 124,
+            "Strawberry leaf": 88,
+            "Tomato Early blight leaf": 79,
+            "Tomato Septoria leaf spot": 140,
+            "Tomato leaf": 55,
+            "Tomato leaf bacterial spot": 101,
+            "Tomato leaf late blight": 101,
+            "Tomato leaf mosaic virus": 44,
+            "Tomato leaf yellow virus": 70,
+            "Tomato mold leaf": 85,
+            "Tomato two spotted spider mites leaf": 2,
+            "grape leaf": 57,
+            "grape leaf black rot": 56
+          },
+          "n_classes": 28,
+          "n_images": 2342
+        }
+      }
+    },
+    "plantvillage": {
+      "classes": {
+        "Apple___Apple_scab": 630,
+        "Apple___Black_rot": 621,
+        "Apple___Cedar_apple_rust": 275,
+        "Apple___healthy": 1645,
+        "Blueberry___healthy": 1502,
+        "Cherry_(including_sour)___Powdery_mildew": 1052,
+        "Cherry_(including_sour)___healthy": 854,
+        "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": 513,
+        "Corn_(maize)___Common_rust_": 1192,
+        "Corn_(maize)___Northern_Leaf_Blight": 985,
+        "Corn_(maize)___healthy": 1162,
+        "Grape___Black_rot": 1180,
+        "Grape___Esca_(Black_Measles)": 1383,
+        "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": 1076,
+        "Grape___healthy": 423,
+        "Orange___Haunglongbing_(Citrus_greening)": 5507,
+        "Peach___Bacterial_spot": 2297,
+        "Peach___healthy": 360,
+        "Pepper,_bell___Bacterial_spot": 997,
+        "Pepper,_bell___healthy": 1478,
+        "Potato___Early_blight": 1000,
+        "Potato___Late_blight": 1000,
+        "Potato___healthy": 152,
+        "Raspberry___healthy": 371,
+        "Soybean___healthy": 5090,
+        "Squash___Powdery_mildew": 1835,
+        "Strawberry___Leaf_scorch": 1109,
+        "Strawberry___healthy": 456,
+        "Tomato___Bacterial_spot": 2127,
+        "Tomato___Early_blight": 1000,
+        "Tomato___Late_blight": 1909,
+        "Tomato___Leaf_Mold": 952,
+        "Tomato___Septoria_leaf_spot": 1771,
+        "Tomato___Spider_mites Two-spotted_spider_mite": 1676,
+        "Tomato___Target_Spot": 1404,
+        "Tomato___Tomato_Yellow_Leaf_Curl_Virus": 5357,
+        "Tomato___Tomato_mosaic_virus": 373,
+        "Tomato___healthy": 1591
+      },
+      "n_classes": 38,
+      "n_images": 54305,
+      "supported_crops": {
+        "grape": {
+          "classes": {
+            "Grape___Black_rot": 1180,
+            "Grape___Esca_(Black_Measles)": 1383,
+            "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": 1076,
+            "Grape___healthy": 423
+          },
+          "n_images": 4062
+        },
+        "potato": {
+          "classes": {
+            "Potato___Early_blight": 1000,
+            "Potato___Late_blight": 1000,
+            "Potato___healthy": 152
+          },
+          "n_images": 2152
+        },
+        "tomato": {
+          "classes": {
+            "Tomato___Bacterial_spot": 2127,
+            "Tomato___Early_blight": 1000,
+            "Tomato___Late_blight": 1909,
+            "Tomato___Leaf_Mold": 952,
+            "Tomato___Septoria_leaf_spot": 1771,
+            "Tomato___Spider_mites Two-spotted_spider_mite": 1676,
+            "Tomato___Target_Spot": 1404,
+            "Tomato___Tomato_Yellow_Leaf_Curl_Virus": 5357,
+            "Tomato___Tomato_mosaic_virus": 373,
+            "Tomato___healthy": 1591
+          },
+          "n_images": 18160
+        }
+      },
+      "variant_used": "color",
+      "variants": {
+        "color": 54305,
+        "grayscale": 54305,
+        "segmented": 54306
+      }
+    },
+    "potato_pld": {
+      "n_images": 4072,
+      "plantvillage_naming_hits": 0,
+      "splits_and_classes": {
+        "Testing/Early_Blight": 162,
+        "Testing/Healthy": 102,
+        "Testing/Late_Blight": 141,
+        "Training/Early_Blight": 1303,
+        "Training/Healthy": 816,
+        "Training/Late_Blight": 1132,
+        "Validation/Early_Blight": 163,
+        "Validation/Healthy": 102,
+        "Validation/Late_Blight": 151
+      }
+    },
+    "tomato_village": {
+      "splits": {
+        "test": {
+          "classes": {
+            "Early_blight": 50,
+            "Healthy": 22,
+            "Late_blight": 92,
+            "Leaf Miner": 104,
+            "Magnesium Deficiency": 95,
+            "Nitrogen Deficiency": 37,
+            "Pottassium Deficiency": 8,
+            "Spotted Wilt Virus": 53
+          },
+          "n_classes": 8,
+          "n_images": 461
+        },
+        "train": {
+          "classes": {
+            "Early_blight": 347,
+            "Healthy": 151,
+            "Late_blight": 632,
+            "Leaf Miner": 716,
+            "Magnesium Deficiency": 655,
+            "Nitrogen Deficiency": 251,
+            "Pottassium Deficiency": 50,
+            "Spotted Wilt Virus": 361
+          },
+          "n_classes": 8,
+          "n_images": 3163
+        },
+        "val": {
+          "classes": {
+            "Early_blight": 99,
+            "Healthy": 43,
+            "Late_blight": 180,
+            "Leaf Miner": 204,
+            "Magnesium Deficiency": 187,
+            "Nitrogen Deficiency": 72,
+            "Pottassium Deficiency": 14,
+            "Spotted Wilt Virus": 103
+          },
+          "n_classes": 8,
+          "n_images": 902
+        }
+      }
+    }
+  },
+  "duplicate_analysis": {
+    "exact_dhash_matches_across_datasets": 0,
+    "near_dhash_matches_hamming_le_4": 0,
+    "plantvillage_potato_hashed": 2152,
+    "pld_dhashes_in_multiple_own_splits": 4,
+    "pld_hashed": 4072,
+    "pld_internal_duplicate_images": 20
+  },
+  "generated_by": "training/inspect_datasets.py"
+}

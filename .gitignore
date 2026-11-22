@@ -1,0 +1,43 @@
+# Datasets and raw archives - never commit these
+datasets/
+datasets_raw/
+*.zip
+*.tar
+*.tar.gz
+
+# Model weights and checkpoints
+checkpoints/
+*.pth
+*.pt
+*.onnx
+*.safetensors
+
+# Caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+.cache/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.turbo/
+
+# Environment and secrets - never commit
+.env
+.env.*
+!.env.example
+kaggle.json
+.kaggle/
+
+# Evaluation artifacts (keep the directory, ignore bulky outputs)
+evaluation_results/**/*.png
+evaluation_results/**/*.npy
+
+# OS
+.DS_Store
+Thumbs.db
